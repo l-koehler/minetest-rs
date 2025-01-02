@@ -2579,7 +2579,7 @@ impl Deserialize for AbsNodeMetadataList {
 
 #[derive(Debug, Clone, PartialEq, MinetestSerialize, MinetestDeserialize)]
 pub struct AbsBlockPos {
-    pos: v3s16,
+    pub pos: v3s16,
 }
 
 /// BlockPos addresses a node within a block
