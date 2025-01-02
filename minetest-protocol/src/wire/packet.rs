@@ -291,6 +291,10 @@ impl Deserialize for InnerBody {
 
     fn deserialize(deser: &mut Deserializer) -> DeserializeResult<Self> {
         use InnerBody::*;
+        // HACK this is probably a bad idea
+        if deser.remaining() == 1 {
+            return Ok(Control(ControlBody::Ping)) // the only ControlBody without extra data (except Disconnect)
+        }
         let packet_type = u8::deserialize(deser)?;
         match packet_type {
             0 => Ok(Control(ControlBody::deserialize(deser)?)),
